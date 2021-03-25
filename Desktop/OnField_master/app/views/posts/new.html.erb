@@ -1,0 +1,111 @@
+<% if @event.confirming != '1' %> 
+    <%= form_for @event, multipart: true, local: true do |f| %>
+        <div>
+            <div>
+                <%= f.label :"募集タイトル" %>
+                <%= f.text_field :title %>
+            </div>
+            <div>
+                <%= f.label :"希望試合日" %>
+                <%= f.date_select :start_time, {include_blank: true, use_month_numbers: true, start_year:Time.now.year}, {class: 'time-box'} %>
+            </div>
+            <div>
+                <%= f.label :"希望試合時間" %>
+                <%= f.time_select :match_start,{include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, {class: 'time-box'} %>
+            </div>
+            <div>
+                <%= f.label :"募集締め切り" %>
+                <%= f.date_select :deadline, {include_blank: true, use_month_numbers: true, start_year:Time.now.year}, {class: 'time-box'} %>
+            </div>
+            <div>
+                <%= f.label :"希望試合エリア" %>
+                <%= f.select :area, [["東京都", "東京都"], ["神奈川県", "神奈川県"]], include_blank: "選択して下さい" %>
+            </div>
+            <div>
+                <%= f.label :"試合場所" %>
+                <%= f.text_field :place %>
+            </div>
+            <div>
+            <%= f.label :"試合レベル" %>
+            <%= f.select :level, [["社会人", "社会人"], ["高校", "高校"],["中学", "中学"], ["小学校(高学年)", "小学校(高学年)"], ["小学校(低学年)", "小学校(低学年)"]], include_blank: "選択して下さい" %>
+            </div>
+
+            <div class = "game_contents a" >
+            <%= f.label :"募集の概要・ひとこと" %>
+            </div>
+            <div class = "game_contents b" >
+            <%= f.text_area :game_contents %>
+            </div>
+            
+            <div>
+            <%= f.label :"イメージ画像" %>
+            <%= f.file_field :game_image %>
+            </div>
+
+            <%= f.hidden_field :game_image_cache %>
+
+            <%= f.hidden_field :confirming %>
+
+        </div>
+        <%= f.submit '確認画面へ'%>
+    <% end %>
+<% else %>
+    <%= form_for @event, multipart:true, local: true  do |f|%>
+        <div>
+            <div>
+                <%= f.label :"募集タイトル" %>
+                <%= @event.title %>
+            </div>
+            <div>
+                <%= f.label :"希望試合日" %>
+                <%= @event.start_time.strftime("%Y年%m月%d日") %>
+            </div>
+            <div>
+                <%= f.label :"希望試合時間" %>
+                <%= @event.match_start.strftime("%H:%M") %>
+            </div>
+            <div>
+                <%= f.label :"募集締め切り" %>
+                <%= @event.deadline.strftime("%Y年%m月%d日") %>
+            </div>
+            <div>
+                <%= f.label :"希望試合エリア" %>
+                <%= @event.area %>
+            </div>
+            <div>
+                <%= f.label :"試合場所" %>
+                <%= @event.place %>
+            </div>
+            <div>
+            <%= f.label :"試合レベル" %>
+            <%= @event.level %>
+            </div>
+
+            <div class = "game_contents a" >
+            <%= f.label :"募集の概要・ひとこと" %>
+            </div>
+            <div class = "game_contents b" >
+            <%= @event.game_contents %>
+            </div>
+            
+            <div>
+            <%= f.label :"イメージ画像" %>
+            <%= image_tag @event.game_image.url %>
+            </div>
+
+            <%= f.hidden_field :title %>
+            <%= f.hidden_field :start_time %>
+            <%= f.hidden_field :match_start %>
+            <%= f.hidden_field :deadline %>
+            <%= f.hidden_field :area %>
+            <%= f.hidden_field :place %>
+            <%= f.hidden_field :level %>
+            <%= f.hidden_field :game_contents %>
+            <%= f.hidden_field :game_image_cache %>
+            <%= f.hidden_field :confirming %>
+
+        </div>
+        <%= f.submit '投稿！'%> 
+    <% end %>
+    <%= link_to "入力画面に戻る", posts_back_path %>
+<% end %>

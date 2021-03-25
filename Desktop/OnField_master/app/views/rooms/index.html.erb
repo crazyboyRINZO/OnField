@@ -1,0 +1,9 @@
+<div>
+<% if @rooms.blank? %>
+<div>トークはありません。</div>
+  <% else %>  
+    <% @rooms.each do |room| %>
+      <li><%= link_to room.post.title, room_path(room) %></li>
+    <% end %>
+<% end %>
+</div>

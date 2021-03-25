@@ -1,0 +1,16 @@
+/*
+ *= require simple_calendar
+ *= require_tree .
+ *= require_self
+ */
+
+body{
+    zoom: 300%;
+    text-align: center;
+    background-color: gray;
+    color: honeydew;
+}
+
+header{
+    text-align: right;
+}

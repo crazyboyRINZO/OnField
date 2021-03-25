@@ -1,0 +1,8 @@
+<% @events.each do |event| %>
+  <%= link_to event.title, {controller: :posts,action: :details,id: event.id} %>
+  <% if event.game_image? %>
+  <%= image_tag event.game_image.url %><br>
+  <% else %>
+  <%= image_tag '/assets/default_post.jpg' %><br>
+  <% end %>
+<% end %>

@@ -1,0 +1,21 @@
+<header>
+    <% if !user_signed_in? %>
+    <%= link_to "TOP", root_path %>
+    <%= link_to 'ログイン', new_user_session_path %>
+    <%= link_to '新規登録', new_user_registration_path %>
+    <% end %>
+</header>
+
+<h1><%= @date_time.strftime("%Y%m%d").to_i %>の募集一覧</h1>
+
+<% if @event != [] %>
+    <% @event.each do |event| %>
+        <%= link_to event.title, {controller: :posts,action: :details,id: event.id} %><br>
+    <% end %> 
+    <% else %>
+    <p>募集はありません。</p>
+<% end %>
+<div>
+
+
+<%= link_to '試合を募集する', new_post_path %>

@@ -1,0 +1,81 @@
+<h2>チーム新規登録画面</h2>
+<% if @team.confirming != '1' %> 
+  <%= form_with(model: @team, local: true) do |f| %>
+    <div>
+      
+      <%= f.label :team_name %>
+      <%= f.text_field :team_name %><br>
+
+      <%= f.label :member %>
+      <%= f.number_field :member %><br>
+      <%= f.label :men %>
+      <%= f.number_field :men %>
+      <%= f.label :women %>
+      <%= f.number_field :women %><br>
+
+      <%= f.label :sports %>
+      <%= f.radio_button :sports, "サッカー" %> サッカー
+      <%= f.radio_button :sports, "フットサル" %>フットサル<br>
+
+      <%= f.label :team_level %>
+      <%= f.select :team_level, ['社会人', '高校', '中学校', '小学校(高学年)', '低学年(低学年)' ], {include_blank: '選択ボックス'} %><br>
+
+      <%= f.label :チーム実績 %>
+      <%= f.text_field :performance %><br>
+
+      <%= f.label :team_contents %>
+      <%= f.text_area :team_contents %><br>
+
+      <div>
+      <%= f.label :"イメージ画像" %>
+      <%= f.file_field :team_image %>
+      </div>
+
+      <%= f.hidden_field :team_image_cache %>
+
+      <%= f.hidden_field :confirming %>
+
+      <%= f.submit "確認画面へ" %>
+    </div>
+  <% end %>
+<% else %>
+  <%= form_with(model: @team, local: true) do |f| %>
+    <div>
+      <%= f.label :team_name %>
+      <%= @team.team_name %><br>
+
+      <%= f.label :sports %>
+      <%= @team.sports %><br>
+
+      <%= f.label :member %>
+      <%= @team.member %><br>
+
+      <%= f.label :team_level %>
+      <%= @team.team_level %><br>
+
+      <%= f.label :performance %>
+      <%= @team.performance %><br>
+
+      <%= f.label :team_contents %>
+      <%= @team.team_contents %><br>
+
+      <div>
+      <%= f.label :"イメージ画像" %>
+      <%= image_tag @team.team_image.url %>
+      </div>
+
+      <%= f.hidden_field :team_name %>
+      <%= f.hidden_field :sports %>
+      <%= f.hidden_field :member %>
+      <%= f.hidden_field :attribute %>
+      <%= f.hidden_field :performance %>
+      <%= f.hidden_field :team_contents %>
+      <%= f.hidden_field :team_image_cache %>
+      <%= f.hidden_field :confirming %>
+
+      <%= f.submit "登録" %>
+    </div>
+  <% end %>
+
+  <%= link_to "戻る", teams_back_path %>
+<% end %>

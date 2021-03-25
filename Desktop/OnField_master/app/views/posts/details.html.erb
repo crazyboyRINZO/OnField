@@ -1,0 +1,35 @@
+<%= @event.title %>
+
+<div class="comment-wrapper border-top　mb-10">
+  <p class="mt-5">コメント一覧</p>
+  <% @comments.each do |c| %>
+    <div>
+      <% unless c.solo_user.blank? %>
+        <a href="<%= solo_user_path(c.solo_user_id) %>"><%= image_tag c.solo_user.user_image.to_s,
+          class:"rounded-circle icon_image mr-3 mb-3"%></a>
+        <% end %>
+      <%= c.solo_user.name unless c.solo_user.blank? %>
+      <br />
+      <%= c.content %>
+    </div>
+    <br />
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@post, @comment], local: true) do |f| %>
+      <%= f.text_area :content, class: "form-control", rows: 5 %>
+      <%= button_tag type: "submit", class: "btn btn-success float-right mt-1" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+
+</div>
+
+<% if @user.id != current_user.id %>
+<% if @post.taker_ids.include?(current_user.id) %>
+<%= link_to '申込をキャンセルする', cancel_post_path(@post.id), data: { confirm: "こちらの投稿の申し込みをキャンセルしますか？" } %>
+<% else %>
+<%= link_to '申し込む', take_post_path(@post.id), data: { confirm: "こちらの投稿に申し込みますか？" } %>
+<% end %>
+<% end %>

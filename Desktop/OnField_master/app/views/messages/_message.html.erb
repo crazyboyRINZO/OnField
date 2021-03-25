@@ -1,0 +1,5 @@
+<div class='message'>
+  <%# 投稿者を特定できるようにメールアドレスを表示させておく %>
+  <p><%= image_tag message.solo_user.user_image.url %>
+  <%= "#{message.solo_user.name}: #{message.content}" %></p>
+</div>

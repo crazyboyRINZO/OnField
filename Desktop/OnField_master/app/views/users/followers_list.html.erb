@@ -1,0 +1,8 @@
+<% @user.followers.each do |user| %>
+    <%= user.email %>
+    <%= link_to '詳細', user_path(user) %>
+  <% end %>  
+
+  <% if @user.followers_count == 0 %>
+    <%= render 'followers_list' %>
+<% end %>

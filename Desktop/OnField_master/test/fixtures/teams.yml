@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  team_name: MyString
+  sports: MyString
+  member: 1
+  play_area: MyString
+  attribute: MyString
+  performance: MyString
+  team_contents: MyText
+  men: 1
+  women: 1
+  team_image: MyString
+
+two:
+  team_name: MyString
+  sports: MyString
+  member: 1
+  play_area: MyString
+  attribute: MyString
+  performance: MyString
+  team_contents: MyText
+  men: 1
+  women: 1
+  team_image: MyString
