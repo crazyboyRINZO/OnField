@@ -1,0 +1,31 @@
+<% visitor = notification.visitor %>
+<% visited = notification.visited %>
+<% post = notification.post %>
+
+<div>
+    <%= link_to solo_user_path(visitor) do %>
+        <%= visitor.name %>
+    <% end %>
+    <% if notification.action == 'message' %>
+        さんから
+    <% else %>
+        さんが
+    <% end %>
+    <% case notification.action %>
+        <% when 'post_taker' then %>
+        <%= link_to post.title, {controller: :posts,action: :details,id: post.id} %>
+            に申込しました。
+        <% when 'message' then %>
+        <%= link_to 'メッセージ', room_path(notification.room_id) %>
+        が届きました。
+        <% when 'comment' then %>
+    <% if post.solo_user_id == visited.id %>
+        <%= link_to "あなたの投稿", {controller: :posts,action: :details,id: post.id} %>
+    <% else %>
+        <% link_to post_path(notification.post) do %>
+                <= notification.post.user.name + 'さんの投稿' %>
+        <% end %>
+    <% end %>
+            にコメントしました。
+    <% end %>
+</div><br>

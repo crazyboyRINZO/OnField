@@ -1,0 +1,15 @@
+<%= form_with(model: @solo_user, local: true) do |f| %>
+    <div>
+      <%= f.label :チーム名又は個人名（ニックネーム可） %>
+      <%= f.text_field :name %><br>
+
+      <%= f.label :カテゴリ又はレベルの目安 %>
+      <%= f.text_field :level %><br>
+
+      <%= f.label :主な活動場所 %>
+      <%= f.text_field :place %><br>
+
+      <%= link_to 'キャンセル', edit_solo_user_path %>
+      <%= f.submit "保存" %>
+    </div>
+  <% end %>

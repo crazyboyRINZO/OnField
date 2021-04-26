@@ -9,6 +9,11 @@ class RoomsController < ApplicationController
     @room = Room.find(params[:id])
     @user = @room.solo_user
     @messages = @room.messages
+    if @room.solo_user_id == current_solo.id
+      @room.partnar_id
+    else
+      @room.solo_user_id
+    end
   end
 
   def new
@@ -17,3 +22,4 @@ class RoomsController < ApplicationController
     redirect_to rooms_path
   end
 end
+

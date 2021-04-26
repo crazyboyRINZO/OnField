@@ -8,10 +8,10 @@
 
 <h1><%= @date_time.strftime("%Y%m%d").to_i %>の募集一覧</h1>
 
-<% if @event != [] %>
-    <% @event.each do |event| %>
+<% if @events != [] %>
+    <% @events.each do |event| %>
         <%= link_to event.title, {controller: :posts,action: :details,id: event.id} %><br>
-    <% end %> 
+    <% end %>
     <% else %>
     <p>募集はありません。</p>
 <% end %>

@@ -1,3 +1,4 @@
 <h1>ユーザーマイページ</h1>
 <%= image_tag @solo_user.user_image.url %>
-<%= @solo_user.name %>
+<%= @solo_user.name %>　
+<%= link_to 'プロフィール編集', edit_solo_user_path(current_solo.id) %>

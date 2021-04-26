@@ -1,16 +1,26 @@
-<header>
-  <% if !user_signed_in? %>
-    <%= link_to "TOP", root_path %>
-    <%= link_to 'ログイン', new_user_session_path %>
-    <%= link_to '新規登録', new_user_registration_path %>
-  <% end %>
+<p>On Field（オンフィールド）とは</p>
+<div>On Fieldはサッカー・フットサルに特価した完全無料のマッチングプラットフォームです。</br>
+     チームでは練習試合の相手を募集、個人では参加しづらい個サル仲間を募集したりできます。</br>
+     またカレンダー機能によって自分が活動したい日の募集をピンポイントに探すこともできます。
+</div>
 
-</header>
+<div id='main'>
 
+<div class='sort'>
+<%= form_tag(posts_search_path, method: "get") do %>
+  <%= select_tag(:area, options_for_select(@area)) %></br>
+  <%= select_tag(:sports, options_for_select(@sports)) %></br>
+  <%= select_tag(:match, options_for_select(@match)) %></br>
+  <%= submit_tag "絞り込み" %>
+<% end %>
+  <%= link_to "絞り込み解除", posts_search_clear_path %>
+</div>
+<div class='calender'>
 <%= month_calendar events: @events do |date, events| %>
   <div class='a'>
   <%= link_to date.day, {controller: :posts, action: :show, start_time: date } %>
   </div>
 <% end %>
+</div>
 
-  <%= link_to '試合を募集する', new_post_path %>
+</div>

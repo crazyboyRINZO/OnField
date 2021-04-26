@@ -3,7 +3,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
     create_table :notifications do |t|      
       t.integer :visitor_id, null: false
       t.integer :visited_id, null: false
-      t.integer :follow_id
+      t.integer :post_taker_id
       t.integer :comment_id
       t.integer :message_id
       t.string :action, default: '', null: false
@@ -14,7 +14,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
 
     add_index :notifications, :visitor_id
     add_index :notifications, :visited_id
-    add_index :notifications, :follow_id
+    add_index :notifications, :post_taker_id
     add_index :notifications, :comment_id
     add_index :notifications, :message_id
 

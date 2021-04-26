@@ -11,14 +11,24 @@ class PostsController < ApplicationController
 
   def show
     @date_time = params[:start_time].to_datetime
-    @event = Post.where(start_time: @date_time)
+    if session[:event] && session[:event] != [] && session[:event] != nil
+      @events = Array.new
+      session[:event].each do |e|
+        if Post.find(e).start_time == @date_time
+          event = Post.find(e)
+          @events.push(event)
+        end
+      end
+    else
+      @events= Post.where(start_time: @date_time)
+    end
   end
 
   def create
     @event = Post.new(post_params)
     if @event.save
       redirect_to posts_comp_path
-    else 
+    else
       session[:post] = @event
       render :new
     end
@@ -32,6 +42,27 @@ class PostsController < ApplicationController
 
   def calender
     @events = Post.all
+    @area = Post.group(:area).pluck(:area).sort
+    @match = Post.group(:match).pluck(:match).sort
+    @sports = Post.group(:sports).pluck(:sports).sort
+  end
+
+  def search
+    @events = Post.where("area LIKE ? AND match LIKE ? AND sports LIKE ?", "%#{params[:area]}%", "%#{params[:match]}%", "%#{params[:sports]}%")
+    session[:event] = @events.pluck(:id)
+    @area = Post.group(:area).pluck(:area).sort
+    @match = Post.group(:match).pluck(:match).sort
+    @sports = Post.group(:sports).pluck(:sports).sort
+    render :calender
+  end
+
+  def search_clear
+    if session[:event] != nil
+      session[:event].clear
+      redirect_to root_path
+    else
+      redirect_to root_path
+    end
   end
 
   def comp
@@ -49,6 +80,7 @@ class PostsController < ApplicationController
     set_post
     PostTaker.create(post_id: @post.id, taker_id: current_user.id)
     Room.create!(post_id: @post.id, solo_user_id: current_user.id, partnar_id: @post.solo_user_id)
+    @post.create_notification_post_taker!(current_solo, @post.solo_user_id)
     flash[:notice] = '申し込みが完了しました。'
     redirect_to action: "details"
   end
@@ -66,8 +98,8 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :start_time, :match_start, :deadline, :area, :place, :level,
-                                  :game_contents, :game_image, :solo_user_id, :confirming, :game_image_cache).merge(solo_user_id:current_user.id)
+    params.require(:post).permit(:title, :start_time, :match_start, :area, :place, :match, :sports, :category,
+                                 :game_contents, :solo_user_id, :confirming ).merge(solo_user_id: current_user.id)
   end
 
   def set_post

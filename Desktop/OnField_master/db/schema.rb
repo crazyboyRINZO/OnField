@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_24_125855) do
+ActiveRecord::Schema.define(version: 2021_04_07_215828) do
 
   create_table "comments", force: :cascade do |t|
     t.string "content"
@@ -38,16 +38,20 @@ ActiveRecord::Schema.define(version: 2021_03_24_125855) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visitor_id", null: false
     t.integer "visited_id", null: false
-    t.integer "follow_id"
+    t.integer "post_taker_id"
     t.integer "comment_id"
     t.integer "message_id"
     t.string "action", default: "", null: false
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "post_id"
+    t.integer "room_id"
     t.index ["comment_id"], name: "index_notifications_on_comment_id"
-    t.index ["follow_id"], name: "index_notifications_on_follow_id"
     t.index ["message_id"], name: "index_notifications_on_message_id"
+    t.index ["post_id"], name: "index_notifications_on_post_id"
+    t.index ["post_taker_id"], name: "index_notifications_on_post_taker_id"
+    t.index ["room_id"], name: "index_notifications_on_room_id"
     t.index ["visited_id"], name: "index_notifications_on_visited_id"
     t.index ["visitor_id"], name: "index_notifications_on_visitor_id"
   end
@@ -64,15 +68,18 @@ ActiveRecord::Schema.define(version: 2021_03_24_125855) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.datetime "match_time"
+    t.time "match_start"
     t.datetime "deadline"
+    t.string "sports"
+    t.string "level"
     t.string "area"
     t.string "place"
-    t.string "level"
+    t.string "match"
+    t.string "category"
     t.text "game_contents"
     t.string "game_image"
     t.integer "partner_id"
     t.string "status"
-    t.time "match_start"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -85,23 +92,21 @@ ActiveRecord::Schema.define(version: 2021_03_24_125855) do
   create_table "rooms", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "solo_user_id", null: false
     t.integer "partnar_id"
     t.integer "post_id"
+    t.integer "solo_user_id"
     t.index ["post_id"], name: "index_rooms_on_post_id"
     t.index ["solo_user_id"], name: "index_rooms_on_solo_user_id"
   end
 
   create_table "solo_users", force: :cascade do |t|
     t.string "name", null: false
-    t.string "sex", null: false
     t.integer "user_id", null: false
-    t.datetime "age", null: false
     t.text "contents"
-    t.string "sports", null: false
-    t.string "school"
-    t.string "position"
-    t.integer "experience"
+    t.boolean "sports", null: false
+    t.boolean "category", null: false
+    t.string "place"
+    t.string "level"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "user_image"
@@ -131,6 +136,7 @@ ActiveRecord::Schema.define(version: 2021_03_24_125855) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "accepted", default: false, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -140,6 +146,8 @@ ActiveRecord::Schema.define(version: 2021_03_24_125855) do
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "solo_users"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "posts"
+  add_foreign_key "notifications", "rooms"
   add_foreign_key "post_takers", "posts"
   add_foreign_key "post_takers", "solo_users", column: "taker_id"
   add_foreign_key "posts", "solo_users"

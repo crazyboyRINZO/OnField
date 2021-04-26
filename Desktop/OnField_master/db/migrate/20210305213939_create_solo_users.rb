@@ -2,15 +2,12 @@ class CreateSoloUsers < ActiveRecord::Migration[6.0]
   def change
     create_table :solo_users do |t|
       t.string :name, null: false
-      t.string :sex, null: false
       t.references :user, null: false, foreign_key: true
-      t.integer :age, null: false
       t.text :contents
-      t.string :sports, null: false
-      t.string :school
-      t.string :position
-      t.integer :experience
-
+      t.boolean :sports, null: false
+      t.boolean :category, null: false
+      t.string :place
+      t.string :level
       t.timestamps
     end
   end

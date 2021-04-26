@@ -1,7 +1,18 @@
-// Place all the styles related to the posts controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-
 .a{
     color: black;
 }
+
+
+#main{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.sort{
+    flex-grow: 1;
+
+}
+.calender {
+    flex-grow: 6;
+}
+

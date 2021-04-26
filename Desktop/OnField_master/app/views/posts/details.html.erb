@@ -1,4 +1,9 @@
-<%= @event.title %>
+<h1>募集詳細</h1>
+<%= @event.title %></br>
+<%= @event.start_time.strftime("%Y-%m-%d") %></br>
+<%= @event.match_start.strftime("%H:%M:%S") %></br>
+<%= @event.area %></br>
+<%= @event.match %>
 
 <div class="comment-wrapper border-top　mb-10">
   <p class="mt-5">コメント一覧</p>

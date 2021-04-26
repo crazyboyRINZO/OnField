@@ -11,3 +11,4 @@ class RoomChannel < ApplicationCable::Channel
     Message.create! content: data['message'], solo_user_id: current_user.id, room_id: params['room']
   end
 end
+

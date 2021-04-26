@@ -4,15 +4,18 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       
       t.string "title"
       t.datetime "match_time"
+      t.time "match_start"
       t.datetime "deadline"
+      t.string "sports"
+      t.string "level"
       t.string "area"
       t.string "place"
-      t.string "level"
+      t.string "match"
+      t.string "category"
       t.text "game_contents"
       t.string "game_image"
       t.integer "partner_id"
       t.string "status"
-      t.time "match_start"
       t.references :user, foreign_key: true
 
       t.timestamps

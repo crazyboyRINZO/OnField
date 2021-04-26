@@ -2,47 +2,43 @@
     <%= form_for @event, multipart: true, local: true do |f| %>
         <div>
             <div>
-                <%= f.label :"募集タイトル" %>
-                <%= f.text_field :title %>
+                <%= f.select :sports, [["サッカー", "サッカー"], ["フットサル", "フットサル"]], placeholder: "サッカー" %>
             </div>
             <div>
-                <%= f.label :"希望試合日" %>
+                <%= f.select :match, [["練習試合", "練習試合"], ["本番試合", "本番試合"]], placeholder: "練習試合" %>
+            </div>
+            <div>
+                <%= f.label :"募集タイトルを入力" %></br>
+                <%= f.text_area :title %>
+            </div>
+
+            <div>
+                <%= f.label :"試合日を選択" %></br>
                 <%= f.date_select :start_time, {include_blank: true, use_month_numbers: true, start_year:Time.now.year}, {class: 'time-box'} %>
             </div>
             <div>
-                <%= f.label :"希望試合時間" %>
+                <%= f.label :"試合時間を選択" %></br>
                 <%= f.time_select :match_start,{include_blank: true, start_hour: 8, end_hour: 20, minute_step: 15}, {class: 'time-box'} %>
             </div>
             <div>
-                <%= f.label :"募集締め切り" %>
-                <%= f.date_select :deadline, {include_blank: true, use_month_numbers: true, start_year:Time.now.year}, {class: 'time-box'} %>
+                <%= f.label :"試合場所を選択" %></br>
+                <%= f.select :area, [["神奈川県", "神奈川県"], ["東京都", "東京都"]], placeholder: "神奈川県" %>
             </div>
             <div>
-                <%= f.label :"希望試合エリア" %>
-                <%= f.select :area, [["東京都", "東京都"], ["神奈川県", "神奈川県"]], include_blank: "選択して下さい" %>
+                <%= f.text_field :place, placeholder: "グランド名などの詳細・・・"  %>
             </div>
+
             <div>
-                <%= f.label :"試合場所" %>
-                <%= f.text_field :place %>
-            </div>
-            <div>
-            <%= f.label :"試合レベル" %>
-            <%= f.select :level, [["社会人", "社会人"], ["高校", "高校"],["中学", "中学"], ["小学校(高学年)", "小学校(高学年)"], ["小学校(低学年)", "小学校(低学年)"]], include_blank: "選択して下さい" %>
+                <%= f.label :"カテゴリ又はレベルなどを入力" %></br>
+                <%= f.text_field :category %>
             </div>
 
             <div class = "game_contents a" >
-            <%= f.label :"募集の概要・ひとこと" %>
+                <%= f.label :"コメントを入力" %>
             </div>
             <div class = "game_contents b" >
-            <%= f.text_area :game_contents %>
+                <%= f.text_area :game_contents %>
             </div>
-            
-            <div>
-            <%= f.label :"イメージ画像" %>
-            <%= f.file_field :game_image %>
-            </div>
-
-            <%= f.hidden_field :game_image_cache %>
 
             <%= f.hidden_field :confirming %>
 
@@ -52,6 +48,14 @@
 <% else %>
     <%= form_for @event, multipart:true, local: true  do |f|%>
         <div>
+            <div>
+                <%= f.label :"試合種別" %>
+                <%= @event.sports %>
+            </div>
+            <div>
+                <%= f.label :"試合種別" %>
+                <%= @event.match %>
+            </div>
             <div>
                 <%= f.label :"募集タイトル" %>
                 <%= @event.title %>
@@ -65,47 +69,37 @@
                 <%= @event.match_start.strftime("%H:%M") %>
             </div>
             <div>
-                <%= f.label :"募集締め切り" %>
-                <%= @event.deadline.strftime("%Y年%m月%d日") %>
-            </div>
-            <div>
                 <%= f.label :"希望試合エリア" %>
                 <%= @event.area %>
             </div>
             <div>
                 <%= f.label :"試合場所" %>
-                <%= @event.place %>
+                 <%= @event.place %>
             </div>
             <div>
-            <%= f.label :"試合レベル" %>
-            <%= @event.level %>
+                <%= f.label :"カテゴリ又はレベル" %>
+                <%= @event.category %>
             </div>
-
             <div class = "game_contents a" >
-            <%= f.label :"募集の概要・ひとこと" %>
+                <%= f.label :"コメント" %>
             </div>
             <div class = "game_contents b" >
-            <%= @event.game_contents %>
-            </div>
-            
-            <div>
-            <%= f.label :"イメージ画像" %>
-            <%= image_tag @event.game_image.url %>
+                <%= @event.game_contents %>
             </div>
 
             <%= f.hidden_field :title %>
             <%= f.hidden_field :start_time %>
             <%= f.hidden_field :match_start %>
-            <%= f.hidden_field :deadline %>
             <%= f.hidden_field :area %>
             <%= f.hidden_field :place %>
-            <%= f.hidden_field :level %>
+            <%= f.hidden_field :match %>
+            <%= f.hidden_field :sports %>
+            <%= f.hidden_field :category %>
             <%= f.hidden_field :game_contents %>
-            <%= f.hidden_field :game_image_cache %>
             <%= f.hidden_field :confirming %>
 
         </div>
-        <%= f.submit '投稿！'%> 
+        <%= f.submit '募集する'%> 
     <% end %>
     <%= link_to "入力画面に戻る", posts_back_path %>
 <% end %>

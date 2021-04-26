@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'posts#calender'
+  root 'posts#calender' 
 
   # devise
   devise_for :users, :controllers => {sessions: 'users/sessions', registrations: 'users/registrations'}
@@ -25,6 +25,8 @@ Rails.application.routes.draw do
   # 投稿
   get 'posts/comp'
   get 'posts/back'
+  get 'posts/search'
+  get 'posts/search_clear'
   get 'posts/details/:id', to: 'posts#details'
   get 'posts/calender/:start_time', to: 'posts#show'
   resources :posts
@@ -53,5 +55,8 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create]
   end
+
+  # 通知機能
+  resources :notifications, only: :index
 
 end

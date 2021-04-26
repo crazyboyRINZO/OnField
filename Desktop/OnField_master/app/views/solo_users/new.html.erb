@@ -2,47 +2,21 @@
 <%= link_to "TOP", root_path %>
 <%= link_to "ログアウト", destroy_user_session_path, method: "delete" %>
 </header>
-<h2>ユーザー新規登録画面</h2>
+<h2>無料新規会員登録</h2>
 <% if @solo_user.confirming != '1' %> 
   <%= form_with(model: @solo_user, local: true) do |f| %>
     <div>
       
-      <%= f.label :name %>
+      <%= f.label :ニックネームまたはチーム名 %>
       <%= f.text_field :name %><br>
 
-      <%= f.label :sex %>
-      <%= f.radio_button :sex, "男" %> 男性
-      <%= f.radio_button :sex, "女" %> 女性<br>
+      <%= f.label :登録種別 %>
+      <%= f.radio_button :category, "チーム" %> チーム
+      <%= f.radio_button :category, "個人" %>個人<br>
 
-      <%= f.label :age %>
-      <%= f.date_select(
-        :age,
-        use_month_numbers: true,
-        start_year: 1970,
-        end_year: (Time.now.year - 15)) %><br>
-
-      <%= f.label :sports %>
+      <%= f.label :登録種別 %>
       <%= f.radio_button :sports, "サッカー" %> サッカー
       <%= f.radio_button :sports, "フットサル" %>フットサル<br>
-
-      <%= f.label :school %>
-      <%= f.text_field :school %><br>
-
-      <%= f.label :position %>
-      <%= f.text_field :position %><br>
-
-      <%= f.label :experience %>
-      <%= f.text_field :experience %><br>
-
-      <%= f.label :contents %>
-      <%= f.text_area :contents %><br>
-
-      <div>
-      <%= f.label :"イメージ画像" %>
-      <%= f.file_field :user_image %>
-      </div>
-
-      <%= f.hidden_field :user_image_cache %>
 
       <%= f.hidden_field :confirming %>
 
@@ -52,59 +26,34 @@
 <% else %>
   <%= form_with(model: @solo_user, local: true) do |f| %>
     <div>
-      <%= f.label :name %>
+    <% if @solo_user.category == 'チーム' then %>
+      <%= f.label :チーム名 %>
       <%= @solo_user.name %><br>
+    <% else %>
+      <%= f.label :ニックネーム %>
+      <%= @solo_user.name %><br>
+    <% end %>
 
-      <%= f.label :sex %>
-      <% if @solo_user.sex == '男' %>
-        男性
-      <% else %> 
-        女性
+      <%= f.label :登録種別 %>
+      <% if @solo_user.sports == 'チーム' then %> 
+        チーム
+      <% else %>
+        個人
       <% end %><br>
 
-      <%= f.label :"生年月日" %>
-      <% d1 = @solo_user.age.strftime("%Y%m%d").to_i %>
-      <% d2 = Date.today.strftime("%Y%m%d").to_i %>
-      <% @age = (d2 - d1) / 10000 %>
-      <%= @solo_user.age.strftime("%Y年%m月%d日") %>
-    　【<%=  @age  %>歳】<br>
-
-      <%= f.label :sports %>
+      <%= f.label :スポーツ種別 %>
       <% if @solo_user.sports == 'サッカー' then %> 
         サッカー
       <% else %>
         フットサル
       <% end %><br>
 
-      <%= f.label :school %>
-      <%= @solo_user.school %><br>
-
-      <%= f.label :position %>
-      <%= @solo_user.position %><br>
-
-      <%= f.label :experience %>
-      <%= @solo_user.experience %>年<br>
-
-      <%= f.label :contents %>
-      <%= @solo_user.contents %><br>
-
-      <div>
-      <%= f.label :"イメージ画像" %>
-      <%= image_tag @solo_user.user_image.url %>
-      </div>
-
       <%= f.hidden_field :name %>
-      <%= f.hidden_field :sex %>
-      <%= f.hidden_field :age %>
+      <%= f.hidden_field :category %>
       <%= f.hidden_field :sports %>
-      <%= f.hidden_field :school %>
-      <%= f.hidden_field :position %>
-      <%= f.hidden_field :experience %>
-      <%= f.hidden_field :contents %>
-      <%= f.hidden_field :user_image_cache %>
       <%= f.hidden_field :confirming %>
 
-      <%= f.submit "登録" %>
+      <%= f.submit "会員登録" %>
     </div>
   <% end %>
 
