@@ -6,10 +6,11 @@
   <div class="scroll">  
     <% @rooms.each do |room| %>
       <li><%= link_to room.post.title, room_path(room) %></li>
-      <%= room.messages.order(created_at: :desc).take.try(:created_at).strftime("%m/%d") %>
       <%= room.messages.order(created_at: :desc).take.try(:content) %>
   </div>
     <% end %>
 <% end %>
 
 </div>
+
+

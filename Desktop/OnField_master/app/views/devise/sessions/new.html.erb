@@ -2,8 +2,17 @@
 <%= link_to "TOP", root_path %>
 <%= link_to "パスワード変更", edit_user_password_path %>
 </header>
-<h2>サインイン</h2>
+<artile id="login" v-if="screenShowFlg.login">
+<section class="section-title-area">
+  <div>
+    <img src="/assets/logo.jpg" width="128" height="100">
+  </div>
+  <p><font size="5" color="#3cb371" face="">サインイン</font></p>
+</section>
 
+<section class="section-input-area">
+  <div class="section-input-area-outer-box">
+    <div class="section-input-area-inner-box">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
@@ -28,3 +37,35 @@
 <% end %>
 
 <%= render "devise/shared/links" %>
+</div>
+</div>
+</section>
+</artile>
+
+<artile id="login" v-if="screenShowFlg.login">
+<section class="section-title-area">
+  <div>
+    <img src="/assets/logo.jpg" width="128" height="100">
+  </div>
+  <p><font size="5" color="#3cb371" face="">サインイン</font></p>
+</section>
+<section class="section-input-area">
+  <div class="section-input-area-outer-box">
+    <div class="section-input-area-inner-box">
+      <p>メールアドレス</p>
+      <input type="text" name="mail-address" v-model="loginData.mailAddress">
+      <p>パスワード</p>
+      <input type="password" name="password" v-model="loginData.password">
+      <div class="login-btn-box">
+        <button type="button" name="login-btn" v-on:click="clickLogin" value="" class="btn btn-success login-btn">サインイン</button>
+      </div>
+      <div class="new-account-create-link-box">
+        <a href="#new-member-insert" v-on:click="clickNewAccountCreate">新規アカウントを作成</a>はこちら
+      </div>
+      <div class="forget-password-link-box">
+        <a href="">パスワードを忘れた方</a>はこちら
+      </div>
+    </div>
+  </div>
+</section>
+</artile>

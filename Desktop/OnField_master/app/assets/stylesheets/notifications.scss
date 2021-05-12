@@ -1,3 +1,28 @@
-// Place all the styles related to the notifications controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+#notification-list .table-title-box {
+    width           : 100%    ;
+    text-align      : center ;
+    background-color: #9acd32; /*yellowgreen*/
+    padding: 10px
+  }
+  
+  #notification-list .table-title {
+    margin: 0px;
+  }
+  
+  #notification-list .notification-list-table-box {
+    width      : 60%;
+    margin-left: 20%;
+  }
+  
+  #notification-list .notification-list-table-box table th {
+    text-align: center;
+  }
+  
+  #notification-list .notification-list-table-box table th, 
+  #notification-list .notification-list-table-box table td {
+    border: solid 1px black;
+  }
+
+  .pagination{
+    justify-content: center;
+  }

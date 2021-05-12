@@ -5,10 +5,118 @@
  */
 
 body{
-    zoom: 200%;
-    text-align: center;
-    background-color: gray;
-    color: honeydew;
+    margin: 0;
+    display: flex;
+    flex-flow: column;
+    min-height: 100vh;
+}
+
+/*要素を横並びに配置する*/
+.table-side-line {
+    display     : table;
+    table-layout: fixed;
+  }
+  
+  .side-line {
+    display       : table-cell;
+    vertical-align: middle    ;
+  }
+  
+  /*要素を左右から中央に配置する*/
+  .center-placement {
+    margin: 0 auto;
+  }
+
+#header {
+    background-color: #9acd32; /*yellowgreen*/
+  }
+  
+  /**********************************
+    ヘッダーの右側の部分
+  ***********************************/
+  
+  .header-right {
+    padding-left: 5px;
+  }
+  
+  /**********************************
+    ヘッダーの右側の左上の部分
+  ***********************************/
+  
+  .header-right-top-left {
+    /* list-style: none  ; リストの先頭に表示するマーカー文字の種類を指定する */
+    /* overflow  : hidden; */
+    padding   : 0px   ;
+    text-align: left;
+  }
+  
+  .header-right-top-left li a {
+    /* text-decoration: none   ; テキスト傍線のつけ方・色・スタイルをまとめて指定する */
+    color          : #ffffff; /*white*/
+    font-weight    : normal ; /*フォントの太さ*/
+    
+  }
+  
+  /**********************************
+    ヘッダーの右側の右上の部分
+  ***********************************/
+  
+  .header-right-top {
+    position: relative;
+  }
+  
+  .header-right-top-right {
+    /* list-style: none    ; リストの先頭に表示するマーカー文字の種類を指定する */
+    /* overflow  : hidden  ; */
+    position  : absolute;
+    top       : 50%     ;
+    right     : 1%      ;
+  }
+  
+  .header-right-top-right li {
+    text-align      : center  ;
+    float           : left    ; /*要素を包含ブロックの左右どちらかの側に沿うように設置し、テキストやインライン要素がその周りを回りこめるように定義する*/
+  }
+  
+  .header-right-top-right li a {
+    text-decoration: none   ; /*テキスト傍線のつけ方・色・スタイルをまとめて指定する*/
+    color          : #ffffff; /*white*/
+    font-weight    : normal ; /*フォントの太さ*/
+  }
+  
+  /**********************************
+    ヘッダーの右側の下の部分
+  ***********************************/
+  
+  .header-right-bottom ul {
+    list-style      : none           ; /*リストの先頭に表示するマーカー文字の種類を指定する*/
+    overflow        : hidden         ;
+    padding         : 0px            ;
+    border-radius   : 8px 8px 8px 8px;
+    background-color: #f5f5f5        ; /*whitesmoke*/
+  }
+  
+  .header-right-bottom ul li {
+    text-align      : center     ;
+    float           : left       ; /*要素を包含ブロックの左右どちらかの側に沿うように設置し、テキストやインライン要素がその周りを回りこめるように定義する*/
+    width           : 120px      ; /*marginで調整したい*/
+    /* margin          : 0% 1% 0% 1%; 有効にするとレイアウトが崩れる */
+  }
+
+  .header-right-bottom ul li +li {
+    border-left: 1px solid #333;
+
+  }
+
+  
+  .header-right-bottom ul li a {
+    text-decoration: none   ; /*テキスト傍線のつけ方・色・スタイルをまとめて指定する*/
+    color          : #000000; /*black*/
+    font-weight    : normal ; /*フォントの太さ*/
+  }
+
+main{
+    flex: 1;
 }
 
 header{
@@ -17,5 +125,51 @@ header{
 
 .error_color{
     color:red;
+}
+
+footer{
+    background-color:#666666;
+    height: 5rem;
+    width: 100%;
+    position: relative;
+}
+
+.link{
+    position: absolute;
+    top: 50%; /*親要素を起点に上から50%*/
+    left: 50%;  /*親要素を起点に左から50%*/
+    transform: translateY(-50%) translateX(-50%); /*要素の大きさの半分ずつを戻す*/
+    -webkit-transform: translateY(-50%) translateX(-50%);
+}
+
+footer p {
+    text-align: center;
+    color: #DDDDDD;
+}
+footer ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+footer li{
+    font-size: 10px;
+    text-decoration: underline;
+    padding: 0 10px;
+    display: inline-block;
+}
+
+footer li+ li {
+    border-left: 1px solid #333;
+}
+
+.Editlink{
+    color: #C0C0C0;
+}
+
+.Editlink:hover {
+    color: #444444
+
 }
 

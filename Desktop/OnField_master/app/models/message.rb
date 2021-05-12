@@ -4,6 +4,7 @@ class Message < ApplicationRecord
     after_create_commit { MessageBroadcastJob.perform_later self }
     after_create_commit { create_notification_message! }
 
+    belongs_to :user
     belongs_to :solo_user
     belongs_to :room
     has_many :notifications, dependent: :destroy

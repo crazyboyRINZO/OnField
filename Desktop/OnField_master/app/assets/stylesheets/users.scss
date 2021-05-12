@@ -4,3 +4,63 @@
 ul {
     list-style: none;
   }
+
+  #login .section-title-area,
+  #new-member-insert-account .section-title-area, 
+  #new-member-insert-user .section-title-area {
+    margin-top: 10px;
+  }
+  
+  #login .section-title-area div,
+  #new-member-insert-account .section-title-area div, 
+  #new-member-insert-user .section-title-area div {
+    text-align : center;
+  }
+  
+  #login .section-title-area p,
+  #new-member-insert-account .section-title-area p, 
+  #new-member-insert-user .section-title-area p {
+    text-align : center;
+    font-weight: 600   ;
+  }
+
+  #login .section-input-area .section-input-area-outer-box {
+    width      : 40%                ;
+    height     : 70%                ;
+    margin-left: 30%                ;
+    background : aliceblue          ;
+    border     : 1px solid lightgray;
+    text-align : left               ;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box {
+    width      : 90%;
+    margin-left: 5% ;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box p {
+    width        : 100%;
+    margin-top   : 10px;
+    margin-bottom: 0px ;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box input {
+    width: 100%;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box .login-btn-box {
+    margin-top   : 30px;
+    margin-bottom: 50px;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box .login-btn-box .login-btn {
+    width: 100%;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box .new-account-create-link-box {
+    margin-bottom: 10px;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box .forget-password-link-box {
+    margin-bottom: 30px;
+  }

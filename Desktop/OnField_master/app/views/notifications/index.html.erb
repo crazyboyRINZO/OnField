@@ -1,10 +1,31 @@
-<h1>通知一覧</h1>
-<% notifications = @notifications.where.not(visitor_id: current_user.id) %>
-
+<article id="notification-list">
+<section class="section-display-area">
+  <div class="table-title-box">
+  <h1 class="table-title">通知一覧</h1>
+  </div>
+  <% notifications = @notifications.where.not(visitor_id: current_user.id) %>
     <% if notifications.exists? %>
+  <div class="notification-list-table-box">
+    <table>
+      <thead>
+        <tr>
+        <th width="80%">通知</th>
+        <th width="20%">受信日</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
         <%= render notifications %>
-        <%= paginate notifications %>
+      </tr>
+     </tbody>
+     </table>
+   </div>
+ </section>
     <% else %>
         <p>通知はありません</p>
     <% end %>
+</article>
 
+<div class="pagination">
+<%= paginate notifications %>
+</div>

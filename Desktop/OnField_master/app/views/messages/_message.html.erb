@@ -1,19 +1,20 @@
 <div class='message'>
-<% if message.solo_user_id == current_solo.id %>
-<div class='right'>
-  <p><%= "#{message.solo_user.name}: #{message.content}" %></p>
-</div>
-<% else %>
-<div class='left'>
-<div class = 'a'>
-<div class ='image'>
-  <%= image_tag message.solo_user.user_image.url %></br>
-</div>
-  <%= message.solo_user.name %>
-</div>
-<div class='b'>
-  <%= message.content %>
-</div>
-</div>
-<% end %>
+
+  <% if message.solo_user_id == current_user.id %>
+    <div class='right'>
+      <p><%= "#{message.solo_user.name}: #{message.content}" %></p>
+    </div>
+  <% else %>
+    <div class='left'>
+      <div class = 'a'>
+        <div class ='image'>
+          <%= image_tag message.solo_user.user_image.url %></br>
+        </div>
+          <%= message.solo_user.name %>
+      </div>
+      <div class='b'>
+        <%= message.content %>
+      </div>
+    </div>
+  <% end %>
 </div>

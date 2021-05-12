@@ -21,5 +21,5 @@ class RoomsController < ApplicationController
     @room = Room.create
     redirect_to rooms_path
   end
-end
 
+end

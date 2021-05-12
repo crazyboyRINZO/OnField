@@ -2,8 +2,9 @@
 <% visited = notification.visited %>
 <% post = notification.post %>
 
+<tr>
 <div>
-    <%= link_to solo_user_path(visitor) do %>
+    <td><%= link_to solo_user_path(visitor) do %>
         <%= visitor.name %>
     <% end %>
     <% if notification.action == 'message' %>
@@ -13,11 +14,11 @@
     <% end %>
     <% case notification.action %>
         <% when 'post_taker' then %>
-        <%= link_to post.title, {controller: :posts,action: :details,id: post.id} %>
-            に申込しました。
+        <%= link_to post.title, {controller: :posts,action: :details,id: post.id} %>に申込しました。</td>
+        <td><%= notification.created_at.strftime("%m月%d日")  %></td>
         <% when 'message' then %>
-        <%= link_to 'メッセージ', room_path(notification.room_id) %>
-        が届きました。
+        <%= link_to 'メッセージ', room_path(notification.room_id) %>が届きました。</td>
+        <td><%= notification.created_at %></td>
         <% when 'comment' then %>
     <% if post.solo_user_id == visited.id %>
         <%= link_to "あなたの投稿", {controller: :posts,action: :details,id: post.id} %>
@@ -26,6 +27,8 @@
                 <= notification.post.user.name + 'さんの投稿' %>
         <% end %>
     <% end %>
-            にコメントしました。
+            にコメントしました。</td>
+            <td><%= notification.created_at.strftime("%m月%d日") %></td>
     <% end %>
-</div><br>
+</div>
+</tr>
