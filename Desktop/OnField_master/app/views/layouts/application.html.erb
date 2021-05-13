@@ -18,6 +18,13 @@
 
   <body>
 
+  <%= javascript_pack_tag 'hello_vue' %>
+  <%= stylesheet_pack_tag 'hello_vue'  %> 
+
+  <div id="hello">
+  <p>{{ message }}</p>
+</div>
+
   <header id="header">
   <div class="table-side-line center-placement">
     <h1 class="side-line header-left">
@@ -38,12 +45,12 @@
       </div>
       <div class="header-right-bottom">
         <ul>
-          <li><a href="#">HOME</a></li>
-          <li><a href="#">マイページ</a></li>
-          <li><a href="#">トーク</a></li>
-          <li><a href="#">新規募集</a></li>
-          <li><a href="#">通知</a></li>
-          <li><a href="#">パスワード変更</a></li>
+          <li><%= link_to "HOME", root_path %></li>
+          <li><%= link_to "マイページ", solo_user_path(current_user.id), method: "get" %></li>
+          <li><%= link_to "トーク", rooms_path %></li>
+          <li><%= link_to "新規募集",new_post_path %></li>
+          <li><%= link_to "通知", notifications_path %></li>
+          <li><%= link_to "パスワード変更", edit_user_registration_path %></li>
         </ul>
       </div>
     </nav>
