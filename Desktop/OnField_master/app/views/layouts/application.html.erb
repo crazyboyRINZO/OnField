@@ -9,7 +9,11 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
-    <!--bootstrap-->
+<%# Googleフォント %>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+
+<%# bootstrap %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
@@ -19,21 +23,19 @@
   <body>
 
   <%= javascript_pack_tag 'hello_vue' %>
-  <%= stylesheet_pack_tag 'hello_vue'  %> 
-
-  <div id="hello">
-  <p>{{ message }}</p>
-</div>
+  <%= stylesheet_pack_tag 'hello_vue'  %>
 
   <header id="header">
+  
   <div class="table-side-line center-placement">
     <h1 class="side-line header-left">
       <img src="/assets/logo.jpg" width="128" height="100">
     </h1>
+    <% if user_signed_in? %>
     <nav class="side-line header-right">
       <div class="header-right-top">
         <ul class="header-right-top-left">
-          <li><%= link_to "ログイン", root_path %></li>
+          <li><%= link_to "ログイン", new_user_session_path %></li>
           <li><%= link_to "新規会員登録", root_path %></li>
         </ul>
         <ul class="header-right-top-right">
@@ -43,6 +45,7 @@
           </li>
         </ul>
       </div>
+      
       <div class="header-right-bottom">
         <ul>
           <li><%= link_to "HOME", root_path %></li>
@@ -53,8 +56,31 @@
           <li><%= link_to "パスワード変更", edit_user_registration_path %></li>
         </ul>
       </div>
+      
     </nav>
+    <% else %>
+
+    <nav class="side-line header-right">
+      <div class="header-right-top">
+        <ul class="header-right-top-left">
+          <li><%= link_to "ログイン", new_user_session_path %></li>
+          <li><%= link_to "新規会員登録", root_path %></li>
+        </ul>
+      </div>
+      
+      <div class="header-right-bottom">
+        <ul>
+          <li><%= link_to "TOP", root_path %></li>
+          <li><%= link_to "ログイン", root_path %></li>
+          <li><%= link_to "新規会員登録", root_path %></li>
+        </ul>
+      </div>
+      
+    </nav>
+
+    <% end %>
   </div>
+  
 </header>
 
   <main>
@@ -69,6 +95,7 @@
         </div>
       <% end %>
       <%= yield %>
+
   </main>
 
   <footer>
