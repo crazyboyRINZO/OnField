@@ -1,8 +1,34 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
-ul {
-    list-style: none;
+//  #login{
+//   display: flex;
+// 	justify-content: center;
+// 	align-items: center;
+//  }
+
+//  .section-title-area{
+//    width: 80%;
+//  }
+  
+  #login .section-title-area .sign-in-image {
+    margin-top: 60px;
+  }
+  
+  #login .section-title-area,
+  #new-member-insert-account .section-title-area, 
+  #new-member-insert-user .section-title-area {
+    margin-top: 10px;
+  }
+  
+  #login .section-title-area div,
+  #new-member-insert-account .section-title-area div, 
+  #new-member-insert-user .section-title-area div {
+    text-align : center;
+  }
+  
+  #login .section-title-area p,
+  #new-member-insert-account .section-title-area p, 
+  #new-member-insert-user .section-title-area p { 
+    text-align : center;
+    font-weight: 600   ;
   }
 
   #login .section-title-area,
@@ -27,15 +53,16 @@ ul {
   #login .section-input-area .section-input-area-outer-box {
     width      : 40%                ;
     height     : 70%                ;
-    margin-left: 30%                ;
+    margin     : 0 auto                ;
     background : aliceblue          ;
-    border     : 1px solid lightgray;
+    border     : 1px solid black;
     text-align : left               ;
   }
   
   #login .section-input-area .section-input-area-inner-box {
-    width      : 90%;
-    margin-left: 5% ;
+    width: 80%;
+    margin: 0 auto;
+    max-width: 500px;
   }
   
   #login .section-input-area .section-input-area-inner-box p {
@@ -44,17 +71,33 @@ ul {
     margin-bottom: 0px ;
   }
   
-  #login .section-input-area .section-input-area-inner-box input {
+  #login .section-input-area .section-input-area-inner-box input{
     width: 100%;
+    text-align: center;
   }
   
   #login .section-input-area .section-input-area-inner-box .login-btn-box {
     margin-top   : 30px;
     margin-bottom: 50px;
   }
+
+  #login .section-input-area .section-input-area-inner-box .login-mail {
+    margin-top   : 10px;
+    margin-bottom: 30px;
+  }
   
-  #login .section-input-area .section-input-area-inner-box .login-btn-box .login-btn {
-    width: 100%;
+  #login .section-input-area .section-input-area-inner-box .login-mail .mail-label{
+    margin-top      :30px;
+    margin-bottom   : -7px;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box .login-password {
+    margin-top   : 10px;
+    margin-bottom: 50px;
+  }
+  
+  #login .section-input-area .section-input-area-inner-box .login-password .password-label{
+    margin-bottom   : -7px;
   }
   
   #login .section-input-area .section-input-area-inner-box .new-account-create-link-box {
@@ -64,3 +107,4 @@ ul {
   #login .section-input-area .section-input-area-inner-box .forget-password-link-box {
     margin-bottom: 30px;
   }
+

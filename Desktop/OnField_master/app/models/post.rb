@@ -1,5 +1,7 @@
 class Post < ApplicationRecord
   validates :title, presence: true
+  validates :start_time, presence: true
+  validates :match_start, presence: true
 
   has_many :post_takers, dependent: :destroy
   has_many :takers, through: :post_takers, dependent: :destroy

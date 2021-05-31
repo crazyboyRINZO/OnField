@@ -1,57 +1,232 @@
+.home-page{
+    font-family: 'DotGothic16', sans-serif;
+}
+
 .a{
     color: black;
 }
-
 
 #main{
     display: flex;
     flex-flow: row wrap;
 }
 
-.sort{
-    flex-grow: 2;
-    text-align: center;
-}
 
-.sort h3{
-    margin: 20px 20px;
-}
+/**********************************
+  カレンダー画面のエリア
+***********************************/
+
+
 .calender{
-    flex-grow: 8;
+    flex-grow: 9;
+    margin: 0 20px 20px 20px;
+
 }
 
 .calendar-heading{
+    font-size: 30px;
+    font-weight: bold;
     text-align: center;
-    margin: 20px 20px;
+    margin: 10px 10px;
 }
+
+.calendar-heading h3{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.simple-calendar table{
+    border: 3px solid black;
+  }
 
 .table-table-striped th{
     text-align: center;
-    font-size: 15px;
+    font-size: 20px;
+    border-bottom: 2px solid black;
 }
 
 .table-table-striped tbody tr{
     text-align: center;
-    font-size: 30px;
+    font-size: 40px;
 }
 
-.select-tab::-ms-expand {
-    display: none;
+
+/**********************************
+  絞込み（ソート）エリア
+***********************************/
+
+
+.sort{
+  flex-grow: 1;
+  text-align: center;
 }
 
-select{
-    -webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
-	margin-bottom: 20px;
-	padding: 7px 30px 7px 10px;
-	font-size: 93%;
-	line-height: 1.1em;
-	border-radius: 5px;
-	border: none;
-	background-image: url("/images/pic03-14.png");
-	background-repeat: no-repeat;
-	background-size: 12px 10px;
-	background-position: right 10px center;
-	background-color: #bddfff;
+.sort h3{
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.select-tag{
+  margin: 0 10px 0 10px;
+}
+
+.box1 {
+  padding: 0.5em 1em;
+  margin: 55px 20px 280px 0 ;
+  font-weight: bold;
+  border: solid 2px black;
+}
+.box1 p {
+  margin: 0; 
+  padding: 0;
+}
+
+/**********************************
+  サイト説明エリア
+***********************************/
+.top-box{
+  position: relative;
+  font-size: 20px;
+}
+
+.top-box::before{
+  background-color: rgba(0,0,0,0.4);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  content: ' ';
+}
+
+.top-box .field-image{
+  width: 100%;
+  height: 100%;
+}
+
+.top-box .top-contents{
+  position : absolute;
+  margin   : 0 auto;
+  top      : 15%;
+  left     : 10%;
+  right    : 10%;
+  bottom   : 10%;
+  font-size: 0%;
+  width:65%;
+  height:70%;
+}
+.top-box .top-contents .onfield{
+  font-size: 170%;
+  color: #C0C0C0;
+}
+
+.top-box .top-contents .content{
+  margin-top: 2%;
+  color: white;
+  line-height: 1.5;
+}
+@media only screen and (min-width: 900px) {
+  .top-box .top-contents {
+    font-size: 60%;
+  }
+}
+@media only screen and (min-width: 1000px) {
+  .top-box .top-contents {
+    font-size: 70%;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .top-box .top-contents {
+    font-size: 80%;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .top-box .top-contents {
+    font-size: 90%;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .top-box .top-contents {
+    font-size: 100%;
+  }
+}
+
+/**********************************
+  サイト説明エリア
+***********************************/
+
+#recruitment-list .section-display-area{
+  font-size: 10px;
+}
+
+#recruitment-list .table-title-box {
+  width           : 100%    ;
+  margin          : 3% auto  ;
+  text-align      : center  ;
+  background-color: #9acd32; /*yellowgreen*/
+}
+
+#recruitment-list .table-title-box p{
+  padding: 20px;
+  font-size: 300%;
+}
+
+#recruitment-list .table-title {
+  margin: 0px;
+}
+
+#recruitment-list .recruitment-list-table-box {
+  width      : 80%;
+  margin     : 0 auto;
+  // margin-left: 10%;
+}
+
+#recruitment-list .recruitment-list-table-box table {
+  width: 100%;
+}
+
+#recruitment-list .recruitment-list-table-box table th {
+  text-align: center;
+  font-size: 120%;
+  font-weight: 900;
+}
+
+#recruitment-list .recruitment-list-table-box table td {
+  padding: 3% 0 3% 0;
+  text-align: center;
+  font-size: 180%;
+}
+
+.table-title-box p{
+  font-size: 150%;
+}
+
+#recruitment-list .recruitment-list-table-box table th, 
+#recruitment-list .recruitment-list-table-box table td {
+  border: solid 1px black;
+}
+
+.no-title{
+  text-align: center;
+  font-size: 200%;
+  margin-top: 15%;
+}
+
+.new-recruitment{
+  width: 80%;
+  margin: 0 auto;
+  text-align: center; 
+  font-size: 200%;
+  margin-top: 3%;
+}
+
+.search-form {
+  width: 80%;
+  margin: 0 auto;
+  text-align: right; 
+  zoom:150%;
+}
+
+.search-form #keyword{
+  background-color: silver;
 }

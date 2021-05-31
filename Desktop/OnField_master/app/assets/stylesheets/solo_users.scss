@@ -1,3 +1,100 @@
-// Place all the styles related to the SoloUsers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+.user-new-outer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-new-inner{
+	width:80%;
+}
+
+.user-new-outer .user-new-top{
+	text-align: center;
+	margin-top: 60px;
+}
+
+.user-new-outer-box {
+	width      : 40%                ;
+	margin     : 0 auto;
+	background : aliceblue          ;
+	border     : 1px solid black;
+	margin-top : 10px;
+	margin-bottom: 60px;
+}
+
+.user-new-inner-box{
+	width: 80%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.user-new-label{
+	margin-top: 30px;
+}
+
+.user-new-label .name input{
+    width: 100%;
+	margin-bottom: 30px;
+}
+
+.user-new-label .people{
+    display: flex;
+}
+
+.user-new-label .people .solo{
+    margin-left: 30%;
+}
+
+.user-new-label .sports{
+    display: flex;
+}
+    
+.user-new-label .sports .futsal{
+    margin-left: 30%;
+}
+
+.user-new-bottom{
+    text-align: center;
+	margin: 10% 15%;
+}
+
+// 登録情報確認画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+.user-confirm-label{
+    margin-left: 20%;
+}
+
+.user-confirm-label label{
+    margin-right: 15%;
+}
+
+.user-confirm-bottom{
+	text-align: center;
+	margin: 10% 15%;
+}
+
+.btn.btn-success.login-btn{
+	width: 50%;
+}
+
+// 登録完了画面ーーーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+.user-comp-outer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user-comp-inner{
+    margin-top: 10%;
+    text-align: center;
+    width: 80%;
+}
+
+.user-comp-contents{
+    margin-top: 5%;
+}
+
+.user-comp-inner .user-comp-contents p{
+    font-size: 20px;
+}

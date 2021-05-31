@@ -3,6 +3,7 @@ class PostsController < ApplicationController
 
   def index
     @events = Post.all
+    
   end
 
   def new
@@ -10,18 +11,34 @@ class PostsController < ApplicationController
   end
 
   def show
+
     @date_time = params[:start_time].to_datetime
-    if session[:event] && session[:event] != [] && session[:event] != nil
-      @events = Array.new
-      session[:event].each do |e|
-        if Post.find(e).start_time == @date_time
-          event = Post.find(e)
-          @events.push(event)
-        end
-      end
+    if session[:event]  && session[:event] != nil
+
+p session[:event]
+
+      @events = session[:event].where(start_time: @date_time)
+      @events.page(params[:page]).per(10)
+
+
+
+      # @events = Array.new
+      # session[:event].each do |e|
+      #   if Post.find(e).start_time == @date_time
+      #     event = Post.find(e)
+      #     @events.push(event)
+      #   end
+      # end
+      
     else
-      @events= Post.where(start_time: @date_time)
+      @events= Post.where(start_time: @date_time).page(params[:page]).per(10)
     end
+  end
+
+  def show_search
+    @date_time = params[:time].to_datetime
+    @events = Post.where(start_time: @date_time).where("title LIKE ? OR place LIKE ? OR contributor LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%", "%#{params[:keyword]}%").page(params[:page]).per(10)
+    render :show
   end
 
   def create
@@ -49,16 +66,25 @@ class PostsController < ApplicationController
 
   def search
     @events = Post.where("area LIKE ? AND match LIKE ? AND sports LIKE ?", "%#{params[:area]}%", "%#{params[:match]}%", "%#{params[:sports]}%")
-    session[:event] = @events.pluck(:id)
-    @area = Post.group(:area).pluck(:area).sort
-    @match = Post.group(:match).pluck(:match).sort
-    @sports = Post.group(:sports).pluck(:sports).sort
+    if @events == []
+      p '🌟🌟🌟'
+      @events = []
+      session[:event] = @events
+      @area = Post.group(:area).pluck(:area).sort
+      @match = Post.group(:match).pluck(:match).sort
+      @sports = Post.group(:sports).pluck(:sports).sort
+    else
+      session[:event] = @events
+      @area = Post.group(:area).pluck(:area).sort
+      @match = Post.group(:match).pluck(:match).sort
+      @sports = Post.group(:sports).pluck(:sports).sort
+    end
     render :calender
   end
 
   def search_clear
     if session[:event] != nil
-      session[:event].clear
+      session[:event] = nil
       redirect_to root_path
     else
       redirect_to root_path
@@ -99,7 +125,7 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :start_time, :match_start, :area, :place, :match, :sports, :category,
-                                 :game_contents, :solo_user_id, :confirming ).merge(solo_user_id: current_user.id)
+                                 :game_contents, :solo_user_id, :confirming ).merge(solo_user_id: current_user.id, contributor: current_solo.name)
   end
 
   def set_post

@@ -1,10 +1,67 @@
+.sign-up-outer{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.sign-up-inner{
+	width:80%;
+}
+
+.sign-up-outer .sign-up-top{
+	text-align: center;
+	margin-top: 60px;
+}
+
+.sign-up-outer-box {
+	width      : 40%                ;
+	margin: 0 auto;
+	background : aliceblue          ;
+	border     : 1px solid black;
+	margin-top : 10px;
+	margin-bottom: 60px;
+}
+
+.sign-up-inner-box{
+	width: 80%;
+    margin: 0 auto;
+    max-width: 500px;
+}
+
+.sign-up-label{
+	margin-top: 30px;
+}
+
+.sign-up-outer .sign-up-outer-box .sign-up-inner-box .sign-up-label label{
+	margin-bottom: -7px;
+}
+
+.sign-up-outer .sign-up-outer-box .sign-up-inner-box .sign-up-label input{
+	width: 100%;
+	margin-bottom: 30px;
+}
+
+.sign-up-contents{
+	margin-bottom: -50px;
+}
+
 .scroll{
 	overflow-x: hidden;
 	overflow-y: scroll;
 	margin: 50px auto 20px;
 	padding: 25px;
-	width: 300px;
+	width: 100%;
 	height: 200px;
 	border: 2px solid #ccc;
-    background-color: black;
+    background-color: white;
+	text-align: center;
   }
+
+  .sign-up-outer .sign-up-bottom{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.btn.btn-success.login-btn{
+	width: 50%;
+}

@@ -11,7 +11,13 @@
     <thead>
       <tr>
         <% date_range.slice(0, 7).each do |day| %>
-          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+          <% if t('date.abbr_day_names')[day.wday] == '土' then %>
+            <th bgcolor="#75A9FF"><%= t('date.abbr_day_names')[day.wday] %></th>
+          <% elsif t('date.abbr_day_names')[day.wday] == '日' then %>
+            <th bgcolor="#FF82B2	"><%= t('date.abbr_day_names')[day.wday]%></th>
+          <% else %>
+            <th><%= t('date.abbr_day_names')[day.wday] %></th>
+          <% end %>
         <% end %>
       </tr>
     </thead>

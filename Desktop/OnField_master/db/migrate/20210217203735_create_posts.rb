@@ -16,6 +16,7 @@ class CreatePosts < ActiveRecord::Migration[6.0]
       t.string "game_image"
       t.integer "partner_id"
       t.string "status"
+      t.string "contributor"
       t.references :user, foreign_key: true
 
       t.timestamps

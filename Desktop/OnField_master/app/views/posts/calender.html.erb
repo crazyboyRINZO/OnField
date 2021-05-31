@@ -1,8 +1,11 @@
+<div class='home-page'>
 <div class="top-box">
-  <%= image_tag 'a000911782_01.jpg', class: "field-image" %>
+  <%= image_tag 'field.jpg', class: "field-image" %>
     <div class="top-contents">
-      <h2>On Field（オンフィールド）とは&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; </h2>
-      <div class="content" >
+      <div class="onfield">
+      <p>On Field（オンフィールド）とは</p>
+      </div>
+      <div class="content">
       <p>ー&ensp; On Fieldはサッカー・フットサルに特価した<b><u>完全無料のマッチングプラットフォーム</u></b>です。</p>
       <p>ー&ensp; チームでの活動では練習試合相手を募集、個人での活動では参加しづらい個サル仲間を募集できます。</p>
       <p>ー&ensp; カレンダー機能によって自分が活動したい日の募集をピンポイントに探すことができます。</p>
@@ -16,23 +19,26 @@
       <div class='calender'>
         <%= month_calendar events: @events do |date, events| %>
           <div class='a'>
-            <%= link_to date.day, {controller: :posts, action: :show, start_time: date } %>
+            <%= link_to date.day, {controller: :posts, action: :show, start_time: date }, :style=>"color:black" %>
           </div>
         <% end %>
       </div>
 
 <%# 検索機能 %>
+<div class="box1">
   <div class='sort'>
-    <h3>絞り込み機能</h3></br>
+    <h3>絞り込み</h3></br>
     <%= form_tag(posts_search_path, method: "get") do %>
-      <div class="select-tab">
-        <%= select_tag(:area, options_for_select(@area)) %></br>
-        <%= select_tag(:sports, options_for_select(@sports)) %></br>
-        <%= select_tag(:match, options_for_select(@match)) %></br>
-        <%= submit_tag "絞り込み" %>
+      <div class="select-tag">
+        <%= select_tag :area, options_for_select(@area), include_blank: '選択してください', class: 'form-control' , required: true %></br>
+        <%= select_tag :sports, options_for_select(@sports), include_blank: '選択してください', class: 'form-control' , required: true %></br>
+        <%= select_tag :match, options_for_select(@match), include_blank: '選択してください', class: 'form-control' , required: true %></br>
+        <%= submit_tag "絞り込み", class: 'btn btn-primary btn-block', style:"background-color:black" %>
       </div>
     <% end %>
-    <%= link_to "絞り込み解除", posts_search_clear_path %>
+    <%= link_to "絞り込み解除", posts_search_clear_path, style:"color:black" %>
   </div>
+</div>
 
+</div>
 </div>

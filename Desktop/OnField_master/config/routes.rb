@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get 'posts/search_clear'
   get 'posts/details/:id', to: 'posts#details'
   get 'posts/calender/:start_time', to: 'posts#show'
+  get 'posts/show_search'
   resources :posts
 
   resources :posts do

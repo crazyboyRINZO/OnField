@@ -1,4 +1,10 @@
-<h1>登録が完了しました。</h1><br>
-
-<%= link_to "トップページへ", root_path %>
+<div class="user-comp-outer">
+    <div class="user-comp-inner">
+        <h1>登録が完了しました。</h1>
+        <div class="user-comp-contents">
+        <span style="text-decoration: underline"><p><%= link_to "トップページ", root_path %></p></span>
+        <span style="text-decoration: underline"><p><%= link_to "ログアウト", destroy_user_session_path, method: "delete" %></p></span>
+        </div>
+        </div>
+</div>
 

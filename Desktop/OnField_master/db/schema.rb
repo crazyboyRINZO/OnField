@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_04_07_215828) do
     t.string "game_image"
     t.integer "partner_id"
     t.string "status"
+    t.string "contributor"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

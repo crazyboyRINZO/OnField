@@ -1,61 +1,96 @@
-<header>
-<%= link_to "TOP", root_path %>
-<%= link_to "ログアウト", destroy_user_session_path, method: "delete" %>
-</header>
-<h2>無料新規会員登録</h2>
-<% if @solo_user.confirming != '1' %> 
-  <%= form_with(model: @solo_user, local: true) do |f| %>
-    <div>
-      
-      <%= f.label :ニックネームまたはチーム名 %>
-      <%= f.text_field :name %><br>
-
-      <%= f.label :登録種別 %>
-      <%= f.radio_button :category, "チーム" %> チーム
-      <%= f.radio_button :category, "個人" %>個人<br>
-
-      <%= f.label :登録種別 %>
-      <%= f.radio_button :sports, "サッカー" %> サッカー
-      <%= f.radio_button :sports, "フットサル" %>フットサル<br>
-
-      <%= f.hidden_field :confirming %>
-
-      <%= f.submit "確認画面へ" %>
+<div class="user-new-outer">
+  <div class="user-new-inner">
+    <div class="user-new-top">
+      <div class="user-new-image">
+        <img src="/assets/OnField-logo.png" width="128" height="100">
+      </div>
+        <p><font size="5" color="#3cb371" face="">無料新規会員登録</font></p>
     </div>
-  <% end %>
-<% else %>
-  <%= form_with(model: @solo_user, local: true) do |f| %>
-    <div>
-    <% if @solo_user.category == 'チーム' then %>
-      <%= f.label :チーム名 %>
-      <%= @solo_user.name %><br>
-    <% else %>
-      <%= f.label :ニックネーム %>
-      <%= @solo_user.name %><br>
-    <% end %>
 
-      <%= f.label :登録種別 %>
-      <% if @solo_user.sports == 'チーム' then %> 
-        チーム
-      <% else %>
-        個人
-      <% end %><br>
+    <div class="user-new-outer-box">
+      <div class="user-new-inner-box">
+        <div class="user-new-label">
 
-      <%= f.label :スポーツ種別 %>
-      <% if @solo_user.sports == 'サッカー' then %> 
-        サッカー
-      <% else %>
-        フットサル
-      <% end %><br>
+        <% if @solo_user.confirming != '1' %> 
+          <%= form_with(model: @solo_user, local: true) do |f| %>
+            <div>
+              <div class="name">
+                <%= f.label :ニックネームまたはチーム名 %><br>
+                <%= f.text_field :name %><br>
+              </div>
 
-      <%= f.hidden_field :name %>
-      <%= f.hidden_field :category %>
-      <%= f.hidden_field :sports %>
-      <%= f.hidden_field :confirming %>
+              <%= f.label :登録種別 %><br>
+              <div class="people">
+              <div class="team">
+                <%= f.radio_button :category, "チーム" %> チーム
+              </div>
+              <div class="solo">
+                <%= f.radio_button :category, "個人" %>個人<br>
+              </div>
+              </div>
 
-      <%= f.submit "会員登録" %>
-    </div>
-  <% end %>
+              <%= f.label :登録種別 %><br>
+              <div class="sports">
+              <div class="football">
+                <%= f.radio_button :sports, "サッカー" %> サッカー
+              </div>
+              <div class="futsal">
+                <%= f.radio_button :sports, "フットサル" %>フットサル<br>
+              </div>
+              </div>
 
-  <%= link_to "戻る", solo_users_back_path %>
-<% end %>
+              <%= f.hidden_field :confirming %>
+            </div>
+            <div class="user-new-bottom">
+              <%= f.submit "確認画面へ", class: "btn btn-success login-btn" %>
+            </div>
+            </div>
+          <% end %>
+
+        <% else %>
+        <div class="user-confirm-label">
+
+          <%= form_with(model: @solo_user, local: true) do |f| %>
+            <div>
+            <% if @solo_user.category == 'チーム' then %>
+              <%= f.label :チーム名 %>
+              <span style="text-decoration: underline"><%= @solo_user.name %><br></span>
+            <% else %>
+              <%= f.label :ニックネーム %>
+              <span style="text-decoration: underline"><%= @solo_user.name %><br></span>
+            <% end %>
+
+              <%= f.label :登録種別 %>
+              &ensp; &thinsp; &thinsp;
+              <% if @solo_user.sports == 'チーム' then %> 
+              <span style="text-decoration: underline">チーム</span>
+              <% else %>
+              <span style="text-decoration: underline">個人</span>
+              <% end %><br>
+
+              <%= f.label :スポーツ種別 %>
+              <% if @solo_user.sports == 'サッカー' then %> 
+              <span style="text-decoration: underline">サッカー</span>
+              <% else %>
+              <span style="text-decoration: underline">フットサル</span>
+              <% end %><br>
+
+
+              <%= f.hidden_field :name %>
+              <%= f.hidden_field :category %>
+              <%= f.hidden_field :sports %>
+              <%= f.hidden_field :confirming %>
+            </div>
+            </div>
+
+
+              <div class="user-confirm-bottom">
+              <%= f.submit "会員登録", class: "btn btn-success login-btn" %><br>
+
+          <% end %>
+          <%= link_to "戻る", solo_users_back_path %>
+        <% end %>
+        </div>
+        </div>
+  </div>
+</div>

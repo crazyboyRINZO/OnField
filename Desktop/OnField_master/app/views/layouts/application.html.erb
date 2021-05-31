@@ -12,6 +12,8 @@
 <%# Googleフォント %>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Gothic&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
 
 <%# bootstrap %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
@@ -21,6 +23,7 @@
   </head>
 
   <body>
+  <div id="wrapper">
 
   <%= javascript_pack_tag 'hello_vue' %>
   <%= stylesheet_pack_tag 'hello_vue'  %>
@@ -29,7 +32,7 @@
   
   <div class="table-side-line center-placement">
     <h1 class="side-line header-left">
-      <img src="/assets/logo.jpg" width="128" height="100">
+      <img src="/assets/OnField-logo.png" width="128" height="100">
     </h1>
     <% if user_signed_in? %>
     <nav class="side-line header-right">
@@ -95,7 +98,6 @@
         </div>
       <% end %>
       <%= yield %>
-
   </main>
 
   <footer>
@@ -109,6 +111,7 @@
       </div>
     </div>
   </footer>
+  </div>
   </body>
 
 </html>

@@ -1,21 +1,56 @@
-<header>
-    <% if !user_signed_in? %>
-    <%= link_to "TOP", root_path %>
-    <%= link_to 'ログイン', new_user_session_path %>
-    <%= link_to '新規登録', new_user_registration_path %>
-    <% end %>
-</header>
 
-<h1><%= @date_time.strftime("%Y%m%d").to_i %>の募集一覧</h1>
+
+      <artile id="recruitment-list">
+      <section class="section-display-area">
+<div class="table-title-box">
+<p><%= @date_time.strftime("%Y年%m月%d日") %>の募集一覧</p>
+</div>
 
 <% if @events != [] %>
+
+<div class="search-form">
+  <%= form_with url: posts_show_search_path, method: :get, local: true do |f| %>
+    <%= f.hidden_field :time, value: @date_time %>
+    <%= f.hidden_field :events, value: @events %>    
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.submit "検索" %>
+  <% end %>  
+</div>
+
+<div class="recruitment-list-table-box">
+<table>
+<thead>
+<tr>
+  <th class="contents", width="40%">募集内容</th>
+  <th class="place", width="20%">場所</th>
+  <th class="time", width="20%">時間</th>
+  <th class="name", width="20%">名前</th> <!-- カレンダーから遷移した場合は名前、プロフィールから遷移した場合は日にち -->
+</tr>
+</thead>
+<tbody>
     <% @events.each do |event| %>
-        <%= link_to event.title, {controller: :posts,action: :details,id: event.id} %><br>
+        <tr>
+        <td width="40%"><%= link_to event.title, {controller: :posts,action: :details,id: event.id} %></td>
+        <td><%= link_to event.place, {controller: :posts,action: :details,id: event.id} %></td>
+        <td><%= link_to event.match_start.strftime("%H:%M~"), {controller: :posts,action: :details,id: event.id} %></td>
+        <td><%= link_to event.contributor, {controller: :posts,action: :details,id: event.id} %></td>
+        </tr>
     <% end %>
-    <% else %>
+    <%= paginate @events %>
+<% else %>
+    <div class="no-title" >
     <p>募集はありません。</p>
+    <%= link_to '試合を募集する', new_post_path %></br>
+    <%= link_to '募集一覧へ戻る', :back %></br>
+    <%= link_to "トップページへ戻る", root_path %>
+    </div>
 <% end %>
-<div>
+</table>
+</div>
 
-
-<%= link_to '試合を募集する', new_post_path %>
+<div class= "new-recruitment">
+<span style="text-decoration: underline"><%= link_to '試合を募集する', new_post_path %><span></br>
+<span style="text-decoration: underline"><%= link_to '戻る', :back %></span></br>
+</div>
+</section>
+</artile>
